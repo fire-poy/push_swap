@@ -1,0 +1,115 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 16:59:55 by mpons             #+#    #+#             */
+/*   Updated: 2022/01/21 17:26:01 by mpons            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "../inc/push_swap.h"
+//ft_sa // swap the first 2 elm at the top of stack a.rien if only 1 | 0 elem).
+//#define PRINT_VAR(X) printf("s"#X);
+//PRINT_VAR(a);
+
+void	ft_swap_linkl(t_node *top, t_node *new_top)
+{
+	new_top = top->next;
+	top->prev = x;
+	new_top->prev = NULL;
+	top->next = new_top->next;
+    new_top->next = top;
+	top = new_top;
+}
+
+void	ft_swap(t_stack *stk, char flag)
+{
+	t_node *new_top;
+
+	if (stk->size < 2)
+		return ;
+	new_top = stk->top->next;
+	stk->top->prev = new_top;
+	stk->top->next = new_top->next;
+	new_top->prev = NULL;
+	new_top->next = stk->top;
+	stk->top = new_top;
+    if (stk->size == 2)
+		stk->bot = stk->top->next;
+	if (flag = 'a')
+		ft_print_endl("sa", 1);
+	if (flag = 'b')
+		ft_print_endl("sb", 1);
+}
+
+void	ft_ss(t_stack *a, t_stack *b)
+{
+	ft_swap(a);
+	ft_swap(b);
+	ft_putendl_fd("ss", 1);
+}
+
+t_node  *ft_add_stack(t_stack *a)
+{
+	a->top->prev = new_n;
+	new_n->next = a->top;
+}
+
+void	ft_push(t_stack *a, t_stack *b)a b
+{
+	t_node *tmp;
+
+	if (a->size > 0)
+	{
+		tmp = a->top->next;//2
+		a->top->next = b->top;
+		b->top->prev = a->top;
+
+/*
+	x = a->top->next;
+	a->top->prev = x;
+	x->prev = NULL;
+	a->top->next = x->next;
+    x->next = a->top;
+	a->top = x;
+
+	avec commentaires
+	new_top = a->top->next;// 2 = 2
+	a->top->prev = new_top;//x->prev = 1
+	a->top->next = new_top->next; //x->next = 3
+	new_top->prev = NULL;
+    new_top->next = a->top;//y->next = 2
+	a->top = new_top;
+
+	a->top->prev = a->top->next;//2->prev = 1
+	a->top->next = a->top->next->next;//2->next = 3
+*/
+/*	
+	ft_sb
+	ss
+	{
+		sa;
+		sb;
+	}
+	ft_pa //push a - take the first elm at the top of b and put it at the top of a.
+//					nothing if b is empty.
+	ft_pb
+	ft_ra //rotate a - shift up all elm stack a by 1. 
+//						The first element becomes the last one.
+	ft_rb
+	rr
+	{
+		ra;
+		rb;
+	}
+	ft_rra //	rra : reverse rotate a - shift down all elements of stack a by 1.
+//						The last element becomes the first one.
+	ft_rrb;
+	ft_rrr
+	{
+		ft_rra
+		ft_rrb
+}
+*/

@@ -1,0 +1,153 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   operation.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/18 16:59:55 by mpons             #+#    #+#             */
+/*   Updated: 2022/01/25 14:06:54 by mpons            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "../inc/push_swap.h"
+//ft_sa // swap the first 2 elm at the top of stack a.rien if only 1 | 0 elem).
+//#define PRINT_VAR(X) printf("s"#X);
+//PRINT_VAR(a);
+
+t_node	*ft_lstlast(t_node *lst)
+{
+    while (lst && lst->next)
+        lst = lst->next;
+    return (lst);
+}
+//a->bot = ft_lst_last(a->top);
+
+t_node	*ft_swap_linkl(t_node *top, t_node *new_top) //si envio stk contra node pouedo quitar el return (quizas)
+{
+	new_top = top->next;
+	top->prev = new_top;
+	top->next = new_top->next;
+	new_top->next->prev = top;
+	new_top->prev = NULL;
+	new_top->next = top;
+	top = new_top;
+	return (top);
+}
+//	ft_swap_linkl(stk->top, stk->top->next);
+
+void	ft_swap(t_stack *stk, char flag)
+{
+	if (stk->size < 2)
+		return ;
+	stk->top = ft_swap_linkl(stk->top, stk->top->next);
+	/*
+	new_top = stk->top->next;
+	stk->top->prev = new_top;
+	stk->top->next = new_top->next;
+	new_top->next->prev = stk->top;
+	new_top->prev = NULL;
+	new_top->next = stk->top;
+	stk->top = new_top;
+	*/
+    if (stk->size == 2)
+		stk->bot = stk->top->next;
+	if (flag == 'a')
+		ft_putendl_fd("sa", 1);
+	if (flag == 'b')
+		ft_putendl_fd("sb", 1);
+}
+
+void	ft_ss(t_stack *a, t_stack *b)
+{
+	ft_swap(a, 0);
+	ft_swap(b, 0);
+	ft_putendl_fd("ss", 1);
+}
+/*
+t_node  *ft_add_stack(t_stack *a)
+{
+	a->top->prev = new_n;
+	new_n->next = a->top;
+}
+*/
+
+//peut-etre il faudrait oublier le bottom et le trouve avec une autre fonction
+//void	ft_push_one(t_stack *a, t_stack *b);
+
+void	ft_push(t_stack *a, t_stack *b)
+{
+	if (a->size == 1)
+	{
+		if (b->size == 0)
+		{
+			b->top = a->top;
+			b->bot = b->top;
+		}
+		if (b->size > 0)
+		{
+			b->top->prev = a->top;
+			a->top->next = b->top;
+			b->top = a->top;
+		}
+		a->top = NULL;
+		a->bot = NULL;
+	}
+	if (a->size > 1)
+	{	
+		if (b->size == 0)
+		{
+			b->top = a->top;
+			b->bot = b->top;
+			a->top = a->top->next;
+			a->top->prev = NULL;
+			b->top->next = NULL;
+		}
+		else
+		{
+			b->top->prev = a->top;
+			a->top = a->top->next;
+			a->top->prev = NULL;
+			b->top->prev->next = b->top;
+			b->top = b->top->prev;
+		}
+	}
+	a->size--;
+	b->size++;
+	}
+	if (flag == 'a')
+		ft_putendl_fd("pa", 1);
+	if (flag == 'b')
+		ft_putendl_fd("pb", 1);
+}
+/*
+	avec commentaires
+	new_top = a->top->next;// 2 = 2
+	a->top->prev = new_top;//x->prev = 1
+	a->top->next = new_top->next; //x->next = 3
+	new_top->prev = NULL;
+    new_top->next = a->top;//y->next = 2
+	a->top = new_top;
+
+	a->top->prev = a->top->next;//2->prev = 1
+	a->top->next = a->top->next->next;//2->next = 3
+
+	ft_pa //push a - take the first elm at the top of b and put it at the top of a.
+//					nothing if b is empty.
+	ft_pb
+	ft_ra //rotate a - shift up all elm stack a by 1. 
+//						The first element becomes the last one.
+	ft_rb
+	rr
+	{
+		ra;
+		rb;
+	}
+	ft_rra //	rra : reverse rotate a - shift down all elements of stack a by 1.
+//						The last element becomes the first one.
+	ft_rrb;
+	ft_rrr
+	{
+		ft_rra
+		ft_rrb
+}
+*/
