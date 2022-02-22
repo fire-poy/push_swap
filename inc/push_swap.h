@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:12:42 by mpons             #+#    #+#             */
-/*   Updated: 2022/01/26 11:43:16 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/22 17:04:09 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,18 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+
+//terminal color
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define YELLOW "\033[0;33m"
+# define BLUE "\033[0;34m"
+# define MAGENTA "\033[0;35m"
+# define CYAN "\033[0;36m"
+# define DEFAULT "\033[0m"
+
+// #define MAX(x, m) x - m
+// #define MIN(x, m) m - x
 
 typedef struct s_node t_node;
 
@@ -36,8 +48,9 @@ typedef struct s_stack
 	int		min;
 	int		max;
 	int		pos;
+    int     piv;
     t_node  *top;
-    t_node  *bot; //bottom
+    t_node  *bot; 
 }   t_stack;
 
 void	err_m(char *e);
@@ -45,10 +58,52 @@ void	push_swap(t_stack *a, t_stack *b);
 void	free_stack(t_stack *a);
 
 //ALGO
-int		find_min(t_stack *a);
-int		find_min_bot(t_stack *a);
-int		find_max(t_stack *a);
-int		find_max_bot(t_stack *a);
+int		find_min(t_stack *stk);
+int		find_min_bot(t_stack *stk);
+int		find_max(t_stack *stk);
+int		find_max_bot(t_stack *stk);
+void    push_min_a(t_stack *a, t_stack *b);
+void    push_max_a(t_stack *a, t_stack *b);
+void    push_min_b(t_stack *a, t_stack *b);
+void    push_max_b(t_stack *a, t_stack *b);
+
+//3 et 5
+void    sort_3(t_stack *a, t_stack *b);
+void    sort_5(t_stack *a, t_stack *b);
+void    rev_sort_3(t_stack *a, t_stack *b);
+void    rev_sort_5(t_stack *a, t_stack *b);
+void    push_min_a_simple(t_stack *a, t_stack *b);
+void    push_max_b_simple(t_stack *a, t_stack *b);
+
+//Petit grand choix
+void	petit_choix(t_stack *a, t_stack *b);
+void	big_choix(t_stack *a, t_stack *b);
+int	    ft_brk(t_stack *a, t_stack *b);
+void    rev_sort_b(t_stack *a, t_stack *b);
+
+//Trier
+int     trier(t_stack *s);
+void    sort_a(t_stack *a, t_stack *b);
+int     trier_a(t_stack *s);
+
+//piv
+void    find_piv(t_stack *stk);
+
+int	    find_min_piv(t_stack *a);
+int	    find_min_piv_bot(t_stack *a);
+int     find_max_piv(t_stack *a);
+int     find_max_piv_bot(t_stack *a);
+
+//trier
+int trier_a(t_stack *s);
+int trier_b(t_stack *s);
+void sort_a(t_stack *a, t_stack *b);
+void sort_b(t_stack *a, t_stack *b);
+
+//push_swap
+int     push_piv_min(t_stack *a, t_stack *b);
+int     push_piv_max(t_stack *a, t_stack *b);
+void	push_swap_piv(t_stack *a, t_stack *b);
 
 //PRINT
 void	print_stack(t_stack *stk, char flag);
@@ -76,28 +131,10 @@ void    ft_rot(t_stack *stk, char flag);
 void    ft_rot_2(t_stack *a, t_stack *b);
 void    ft_revrot(t_stack *stk, char flag);
 void    ft_revrot_2(t_stack *a, t_stack *b);
+
 #endif
 
 /*
-typedef struct s_count
-{
-    long    b_pivot;
-    long    s_pivot;
-    int     ra;
-    int     rb;
-    int     pa;
-    int     pb;
-}	t_count;
-
-
-# define RED "\033[0;31m"
-# define GREEN "\033[0;32m"
-# define YELLOW "\033[0;33m"
-# define BLUE "\033[0;34m"
-# define MAGENTA "\033[0;35m"
-# define CYAN "\033[0;36m"
-# define DEFAULT "\033[0m"
-
 write ◦ read◦ malloc ◦ free◦ exit
 
  You have to write a program named push_swap which will receive as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).

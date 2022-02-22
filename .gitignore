@@ -1,3 +1,5 @@
+.DS_Store
 /.vscode
 /push_swap.dSYM
 /tester
+/log_error

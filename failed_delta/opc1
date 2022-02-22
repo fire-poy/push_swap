@@ -1,0 +1,171 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/26 10:37:21 by mpons             #+#    #+#             */
+/*   Updated: 2022/01/27 10:49:28 by mpons            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+#include "../inc/push_swap.h"
+
+void	push_swap(t_stack *a, t_stack *b)
+{
+	int	n;
+
+	while (a->size > 0)
+	{
+		if (find_min(a) <= find_min_bot(a))
+		{
+			n = find_min(a);
+			while (n-- > 0)
+				oper("rra", a, b);
+			oper("pa", a, b);
+		}
+		else
+		{
+			n = find_min_bot(a);
+			while (n-- >= 0)
+				oper("ra", a, b);
+			oper("pa", a, b);
+		}
+	}
+	while (b->size > 0)
+		oper("pb", a, b);
+}
+/*	     
+		printf("n = %d\n", n);
+void	sort_larger(t_stack *a, t_stack *b)
+{
+	int		i;
+	int		max;
+	int		size;
+
+	i = 1;
+	max = 0;
+	size = a->size;
+	while (a)
+	{
+		if (size <= 100)
+			max += a->size / 5 - 2;
+		else
+			max += size / 11 - 2;
+		while (i <= max)
+		{
+			if (!(a))
+				break ;
+			if (a->norm <= max)
+			{
+				oper("pb", a, b);
+				i++;
+			}
+			else
+				oper("ra", a, b);
+		}
+	}
+	i--;
+		push_b(stacka, stackb, i, max);
+	}
+}
+Si dif proporcionel a la mediane et plus petit que la pos on fait
+if dif max - node < 
+*/
+
+int	ft_brk(t_stack *stk)
+{
+	if (stk->size == 1)
+		oper("pa", a, b);
+	return (1);
+}
+
+void	petit_choix(t_stack *a, t_stack *b)
+{
+	int	t;
+	int	tn;
+	int	b;
+
+	t = a->top->value ; 
+	tn = a->top->next->value;  
+	b = a->bot->value;
+	{
+		if (t <= tn && t <= b)
+			oper("pa", a, b);
+		if (ft_brk(a))
+			break ;
+		if (tn <= t && tn <= b)
+		{
+			oper("sa", a, b);
+			oper("pa", a, b);
+		}
+		if (ft_brk(a))
+			break ;
+		if (b <= t && b <= tn)
+		{
+			oper("ra", a, b);
+			oper("pa", a, b);
+		}
+		if (ft_brk(a))
+			break ;
+	}
+}
+
+void	big_choix(t_stack *a, t_stack *b)
+{
+	if (b->top->value > b->top->next->value && b->top->value > b->bot->value)
+		oper("pb", a, b);
+	if (b->top->next->value > b->top->value && b->top->next->value > b->bot->value)
+	{
+		oper("sb", a, b);
+		oper("pb", a, b);
+	}
+	if (b->bot->value > b->top->value && b->bot->value > b->top->next->value)
+	{
+		oper("rb", a, b);
+		oper("pb", a, b);
+	}
+	print_stack(b,'b');
+}
+//choix plus pres
+void	choix_pp(t_stack *a, t_stack *b)
+{
+    while (1)
+	{
+		while (a->size > 0)
+			petit_choix(a, b);
+		while (b->size > 0)
+			big_choix(a, b);
+		if (is_sorted(a->top))
+			return ;
+	}
+}
+/*
+        if (find_min(a) <= find_min_bot(a))
+        {
+            n = find_min(a);
+            while (n-- > 0)
+                oper("rra", a, b);
+            oper("pa", a, b);
+        }
+        else
+        {
+            n = find_min_bot(a);
+            while (n-- >= 0)
+                oper("ra", a, b);
+            oper("pa", a, b);
+        }
+    }
+    while (b->size > 0)
+        oper("pb", a, b);
+}	if
+
+si top 2 ou bot
+si 
+
+
+
+
+
+select plus petit
+*/

@@ -69,7 +69,10 @@ void	print_stack(t_stack *stk, char flag)
 {
 	t_node *top;
 	
-	printf("stack %c_size =%d\n", flag, stk->size);
+	if (flag == 'a')
+		printf("%s stack %c_size =%d\n", GREEN, flag, stk->size);
+	if (flag == 'b')
+		printf("%s stack %c_size =%d\n", RED, flag, stk->size);
 	if (stk->top)
 	{
 		top = stk->top;

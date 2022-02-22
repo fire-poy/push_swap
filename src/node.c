@@ -26,6 +26,10 @@ t_stack	*init_stack()
 	stk->top = NULL;
 	stk->bot = NULL;
 	stk->size = 0;
+	stk->min = 0;
+	stk->max = 0;
+	stk->pos = 0;
+	stk->piv = 0;
 	return (stk);
 }
 
