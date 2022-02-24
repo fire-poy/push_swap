@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/18 21:33:58 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/22 15:25:55 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/24 15:35:41 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,8 @@ int trier_a(t_stack *s)
 	t = s->top->value ; 
 	tn = s->top->next->value;  
 	bt = s->bot->value;
-	if (bt < t && t < tn)
-        return (1); //rra el mas pequeno arriba
-    if (t > bt) 
-        return (2); //ra el mas grande abajo
-    if (t > tn)
-        return (3); //sa el mas grande abajo
+	if (t > bt)
+        return (2); //ra el mas pequeno arriba
     return (0);
 }
 
@@ -43,13 +39,9 @@ int trier_b(t_stack *s)
 	t = s->top->value ; 
 	tn = s->top->next->value;  
 	bt = s->bot->value;
-    if (bt > t && t > tn)
-        return (1); //rrb el mas grande arriba
 	if (t < bt)
 	    return (2); //rb el mas pequeño abajo
-    if (t < tn)
-        return (3); //sb el mas pequeño abajo
-	 return (0);
+    return (0);
 }
 
 void sort_a(t_stack *a, t_stack *b)

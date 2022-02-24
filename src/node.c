@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/20 21:01:58 by mpons             #+#    #+#             */
-/*   Updated: 2022/01/26 08:19:18 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:33:09 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 t_node	*ft_lstlast(t_node *lst)
@@ -18,7 +19,7 @@ t_node	*ft_lstlast(t_node *lst)
     return (lst);
 }
 
-t_stack	*init_stack()
+t_stack	*init_stack(void)
 {
 	t_stack *stk;
 
@@ -30,6 +31,7 @@ t_stack	*init_stack()
 	stk->max = 0;
 	stk->pos = 0;
 	stk->piv = 0;
+	stk->i = 0;
 	return (stk);
 }
 

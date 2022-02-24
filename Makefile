@@ -6,7 +6,7 @@
 #    By: mpons <mpons@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/23 17:30:16 by mpons             #+#    #+#              #
-#    Updated: 2022/02/22 15:16:37 by mpons            ###   ########.fr        #
+#    Updated: 2022/02/24 14:28:51 by mpons            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,18 +30,23 @@ SRC 		= ./src/main.c\
 			  ./operation/rotate.c\
 			  ./algos/push_swap.c\
 			  ./algos/sort_3_5.c\
-			  ./algos/find_min_max.c\
+			  ./algos/find_pos_min_max.c\
 			  ./algos/push_min_max.c\
-			  ./algos/find_min_pivot.c\
+			  ./algos/find_pos_pivot.c\
+			  ./algos/info_stk.c\
+			  ./algos/push_piv.c\
 			  ./algos/trier.c\
-			#   ./failed_delta/delta.c\
-			#   ./failed_delta/petit_big_choix.c\
+			  ./algos/replace.c\
+			  ./algos/find_next.c\
+			  
+# OBJS_DIR = ./objs
 
+# OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
 
-#INC			= -I./inc -I./libft/libft.h
+# vpath %.c $(SRCS_DIR)
+
 INC			= -I./inc 
 
-#LIB			= -L ./libft -lft 
 LIB			= ./libft/libft.a 
 
 all: $(NAME)
@@ -49,15 +54,12 @@ all: $(NAME)
 $(NAME):	$(OBJS)
 			$(MAKE) -C $(LIBFT_DIR)
 			$(CC) $(CFLAGS) -o $(NAME) $(INC) $(SRC) $(LIB)
-#$(NAME):	$(OBJS)
-#			$(MAKE) -C $(LIBFT_DIR)
-#			$(CC) $(CFLAGS) -o $(NAME) $(INC) $(SRC) $(LIB)
 
-easy:		
-			$(CC) -o $(NAME) $(INC) $(SRC) $(LIB)
+# $(OBJS_DIR) :
+# 	@mkdir -p $(OBJS_DIR)
 
-lldb:		
-			$(CC) -g $(CFLAGS) -o $(NAME) $(INC) $(SRC) $(LIB)
+# $(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
+# 	@$(CC) $(CFLAGS) -o $@ $(INC) -I $(LIBFT_DIR) -c $^
 
 clean:
 			$(MAKE) -C $(LIBFT_DIR) clean

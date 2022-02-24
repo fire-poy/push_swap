@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:27:49 by mpons             #+#    #+#             */
-/*   Updated: 2022/01/26 11:40:28 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/24 17:36:16 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 void	ft_revrot(t_stack *stk, char flag)
@@ -31,8 +32,8 @@ void	ft_revrot_2(t_stack *a, t_stack *b)
 {
 	if (a->size < 2 && b->size < 2)
 		return ;
-	ft_rot(a, 0);
-	ft_rot(b, 0);
+	ft_revrot(a, 0);
+	ft_revrot(b, 0);
 	ft_putendl_fd("rrr", 1);
 }
 
@@ -54,8 +55,8 @@ void	ft_rot(t_stack *stk, char flag)
 
 void	ft_rot_2(t_stack *a, t_stack *b)
 {
-	ft_revrot(a, 0);
-	ft_revrot(b, 0);
+	ft_rot(a, 0);
+	ft_rot(b, 0);
 	if (a->size > 1 || b->size > 1)
 		ft_putendl_fd("rr", 1);
 }

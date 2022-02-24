@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:12:42 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/22 17:04:09 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:53:00 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@
 
 # define MAX_INT 2147483647
 # define MIN_INT -2147483648
+# define MIN_INT -2147483648
+# define ABS(Value) Value > 0 ? Value : -(Value)
+# define BIG(p,q) p > q ? p : q
+
 
 //terminal color
 # define RED "\033[0;31m"
@@ -29,9 +33,6 @@
 # define MAGENTA "\033[0;35m"
 # define CYAN "\033[0;36m"
 # define DEFAULT "\033[0m"
-
-// #define MAX(x, m) x - m
-// #define MIN(x, m) m - x
 
 typedef struct s_node t_node;
 
@@ -48,62 +49,33 @@ typedef struct s_stack
 	int		min;
 	int		max;
 	int		pos;
+    int     h_val;
+    int     h_val_b;
+    int     st_size;
+    int     st_min;
+    int     st_max;
     int     piv;
+    int     i;
+    int     mem[50];
     t_node  *top;
     t_node  *bot; 
 }   t_stack;
 
-void	err_m(char *e);
-void	push_swap(t_stack *a, t_stack *b);
-void	free_stack(t_stack *a);
+typedef struct s_ch
+{
+    int x1;
+	int x2;
+	int y1;
+	int y1_b;
+	int y2;
+	int y2_b;
+    int A; 
+	int B; 
+	int C; 
+	int D;
+}   t_ch;
 
-//ALGO
-int		find_min(t_stack *stk);
-int		find_min_bot(t_stack *stk);
-int		find_max(t_stack *stk);
-int		find_max_bot(t_stack *stk);
-void    push_min_a(t_stack *a, t_stack *b);
-void    push_max_a(t_stack *a, t_stack *b);
-void    push_min_b(t_stack *a, t_stack *b);
-void    push_max_b(t_stack *a, t_stack *b);
-
-//3 et 5
-void    sort_3(t_stack *a, t_stack *b);
-void    sort_5(t_stack *a, t_stack *b);
-void    rev_sort_3(t_stack *a, t_stack *b);
-void    rev_sort_5(t_stack *a, t_stack *b);
-void    push_min_a_simple(t_stack *a, t_stack *b);
-void    push_max_b_simple(t_stack *a, t_stack *b);
-
-//Petit grand choix
-void	petit_choix(t_stack *a, t_stack *b);
-void	big_choix(t_stack *a, t_stack *b);
-int	    ft_brk(t_stack *a, t_stack *b);
-void    rev_sort_b(t_stack *a, t_stack *b);
-
-//Trier
-int     trier(t_stack *s);
-void    sort_a(t_stack *a, t_stack *b);
-int     trier_a(t_stack *s);
-
-//piv
-void    find_piv(t_stack *stk);
-
-int	    find_min_piv(t_stack *a);
-int	    find_min_piv_bot(t_stack *a);
-int     find_max_piv(t_stack *a);
-int     find_max_piv_bot(t_stack *a);
-
-//trier
-int trier_a(t_stack *s);
-int trier_b(t_stack *s);
-void sort_a(t_stack *a, t_stack *b);
-void sort_b(t_stack *a, t_stack *b);
-
-//push_swap
-int     push_piv_min(t_stack *a, t_stack *b);
-int     push_piv_max(t_stack *a, t_stack *b);
-void	push_swap_piv(t_stack *a, t_stack *b);
+void	print_piv(t_stack *a);
 
 //PRINT
 void	print_stack(t_stack *stk, char flag);
@@ -115,12 +87,18 @@ void	print_top_bot(t_stack *a, char c);
 t_stack	*init_stack();
 t_node	*ft_create_node(char *str);
 t_stack	*ft_add_stack(t_stack *a, char *val);
+void    replace(t_stack *a);
+void take_info_stk(t_stack *stk);
 
 //CHECK
 int		ft_check_and_atoi(const char *str);
 void	check_arg(char **av, t_stack *a);
 void	check_double(t_node *a);
 int		is_sorted(t_node *tmp);
+
+//outils
+void	err_m(char *e);
+void	free_stack(t_stack *a);
 
 //OPERATIONS
 void	oper(char *flag, t_stack *a, t_stack *b);
@@ -132,9 +110,63 @@ void    ft_rot_2(t_stack *a, t_stack *b);
 void    ft_revrot(t_stack *stk, char flag);
 void    ft_revrot_2(t_stack *a, t_stack *b);
 
+//-----------ALGOS---------
+
+//3 et 5
+void    sort_3(t_stack *a, t_stack *b);
+void    sort_5(t_stack *a, t_stack *b);
+void    rev_sort_3(t_stack *a, t_stack *b);
+void    rev_sort_5(t_stack *a, t_stack *b);
+
+//trier
+int trier_a(t_stack *s);
+int trier_b(t_stack *s);
+void sort_a(t_stack *a, t_stack *b);
+void sort_b(t_stack *a, t_stack *b);
+
+int	find_next(int ref, t_stack *stk);
+
+
+//find_min_max
+int		find_min(t_stack *stk);
+int		find_min_bot(t_stack *stk);
+int		find_max(t_stack *stk);
+int		find_max_bot(t_stack *stk);
+int		find_min_val(t_stack *stk);
+int		find_max_val(t_stack *stk);
+
+//push_min_max
+void    push_min_a(t_stack *a, t_stack *b);
+void    push_max_a(t_stack *a, t_stack *b);
+void    push_min_b(t_stack *a, t_stack *b);
+void    push_max_b(t_stack *a, t_stack *b);
+
+void    push_min_a_simple(t_stack *a, t_stack *b);
+void    push_max_b_simple(t_stack *a, t_stack *b);
+
+//piv
+void    find_piv(t_stack *stk);
+void    find_piv2(t_stack *stk, t_stack *b);
+
+int	    find_sous_piv(t_stack *a);
+int	    find_sous_piv_bot(t_stack *a);
+int     find_sur_piv(t_stack *a);
+int     find_sur_piv_bot(t_stack *a);
+
+//push_swap
+int     push_sous_piv(t_stack *a, t_stack *b, t_ch *c);
+int     push_sur_piv(t_stack *a, t_stack *b);
+void	push_swap(t_stack *a, t_stack *b);
+void	push_swap_piv(t_stack *a, t_stack *b, t_ch *c);
+
 #endif
 
 /*
+//Petit grand choix
+void	petit_choix(t_stack *a, t_stack *b);
+void	big_choix(t_stack *a, t_stack *b);
+int	    ft_brk(t_stack *a, t_stack *b);
+void    rev_sort_b(t_stack *a, t_stack *b);
 write ◦ read◦ malloc ◦ free◦ exit
 
  You have to write a program named push_swap which will receive as an argument the stack a formatted as a list of integers. The first argument should be at the top of the stack (be careful about the order).

@@ -6,11 +6,31 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 16:13:01 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/22 16:10:21 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/24 19:52:19 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
+
+t_ch	*init_st(void)
+{
+	t_ch *st;
+
+	st = malloc(sizeof(t_ch));
+	/*
+	st->x1;
+	st->c->x2;
+	st->y1;
+	st->y1_b;
+	st->y2;
+	st->y2_b;
+    st->A; 
+	st->B; 
+	st->C; 
+	st->D;
+	*/
+	return (st);
+}
 
 void	check_double(t_node *a)
 {
@@ -50,6 +70,7 @@ void	sorted(t_stack *a)
 {
 	if (is_sorted(a->top))
 	{
+		// print_piv(a);
 		free_stack(a);
 		exit(0);
 	}
@@ -59,6 +80,7 @@ int	main(int ac, char **av)
 {
 	t_stack *a;
 	t_stack *b;
+	t_ch *c;
 
 	if (ac > 1)
 	{
@@ -71,37 +93,22 @@ int	main(int ac, char **av)
 			return (0);
 		}
 		b = init_stack();
+		c = init_st();
+		replace(a);
 		if (a->size == 5)
 			sort_5(a, b);
-		sorted(a);
 		if (a->size == 3)
 			sort_3(a, b);
 		if (a->size == 2)
 			oper("sa", a, b);
 		sorted(a);
-		// push_swap(a, b);
-		push_swap_piv(a, b);
-		// if (is_sorted(a->top) == 1)
-		// 	printf("Weee");
-		sorted(a);
+		take_info_stk(a);
+		push_swap_piv(a, b, c);
 		// print_stack(a, 'a');
-		// print_stack(b, 'b');
+		sorted(a);
 	}
 	return (0);
 }
-/*
-		choix_pp(a, b);
-		print_stack(a,'a');
-
-		print_stack(a,'a');
-		print_top_bot(a,'a');
-		oper("sa",a,b);
-		print_stack(b,'b');
-
-		while (a->size > 0)
-		{
-			print_stack(a,'a');
-			printf ("min %d\n",find_min(a));
-			oper("pa",a,b);
-		}
-*/
+		// if (is_sorted(a->top) == 1)
+		// 	printf("Weee");
+		// print_stack(b, 'b');
