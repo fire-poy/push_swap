@@ -6,13 +6,38 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 15:22:37 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/23 15:44:13 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/25 19:32:47 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/push_swap.h"
 
 //find pos min
+int	find_min_val(t_stack *stk)
+{
+	t_node	*top;
+	int		min;
+	int		pos;
+	int		i;
+
+	top = stk->top;
+	min = top->value;
+	i = -1;
+	while (top)
+	{
+		i++;
+		if (top->value <= min)
+		{
+			min = top->value;
+			pos = i;
+		}
+		if (!top->next)
+			break ;
+		top = top->next;
+	}
+	return (min);
+}
+
 int	find_min(t_stack *stk)
 {
 	t_node	*top;
@@ -39,7 +64,7 @@ int	find_min(t_stack *stk)
 	stk->min = min;
 	return (pos);
 }
-		
+
 //find pos min depuis le bottom		
 int	find_min_bot(t_stack *stk)
 {
@@ -95,7 +120,7 @@ int	find_max(t_stack *stk)
 	stk->max = max;
 	return (pos);
 }
-		
+
 //find pos max depuis le bottom
 int	find_max_bot(t_stack *stk)
 {

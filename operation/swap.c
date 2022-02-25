@@ -6,7 +6,7 @@
 /*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/18 16:59:55 by mpons             #+#    #+#             */
-/*   Updated: 2022/01/26 11:37:47 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/25 19:21:01 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../inc/push_swap.h"
@@ -27,9 +27,9 @@ void	ft_swap(t_stack *stk, char flag)
 {
 	if (stk->size < 2)
 		return ;
-    if (stk->size == 2)
+	if (stk->size == 2)
 		ft_rot(stk, 0);
-    if (stk->size > 2)
+	if (stk->size > 2)
 		stk->top = ft_swap_links(stk->top, stk->top->next);
 	if (flag == 'a')
 		ft_putendl_fd("sa", 1);

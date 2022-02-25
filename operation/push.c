@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mpons <marvin@42lausanne.ch>               +#+  +:+       +#+        */
+/*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:16:45 by mpons             #+#    #+#             */
-/*   Updated: 2022/01/28 12:52:08 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/25 19:20:11 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../inc/push_swap.h"
 
 void	ft_push_one(t_stack *a, t_stack *b)

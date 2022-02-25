@@ -6,7 +6,7 @@
 #    By: mpons <mpons@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/23 17:30:16 by mpons             #+#    #+#              #
-#    Updated: 2022/02/24 14:28:51 by mpons            ###   ########.fr        #
+#    Updated: 2022/02/25 19:41:08 by mpons            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,29 +22,20 @@ RM			= rm -f
 LIBFT_DIR	= ./libft
 
 SRC 		= ./src/main.c\
-			  ./src/err.c\
+			  ./src/outils.c\
 			  ./src/node.c\
+			  ./src/replace.c\
 			  ./operation/operation.c\
 			  ./operation/push.c\
 			  ./operation/swap.c\
 			  ./operation/rotate.c\
-			  ./algos/push_swap.c\
 			  ./algos/sort_3_5.c\
-			  ./algos/find_pos_min_max.c\
-			  ./algos/push_min_max.c\
-			  ./algos/find_pos_pivot.c\
+			  ./algos/find_min_max.c\
+			  ./algos/find_pivot_and_next.c\
 			  ./algos/info_stk.c\
-			  ./algos/push_piv.c\
-			  ./algos/trier.c\
-			  ./algos/replace.c\
-			  ./algos/find_next.c\
+			  ./algos/choix.c\
+			  ./algos/push_swap.c\
 			  
-# OBJS_DIR = ./objs
-
-# OBJS = $(addprefix $(OBJS_DIR)/, $(notdir $(SRCS:.c=.o)))
-
-# vpath %.c $(SRCS_DIR)
-
 INC			= -I./inc 
 
 LIB			= ./libft/libft.a 
@@ -54,12 +45,6 @@ all: $(NAME)
 $(NAME):	$(OBJS)
 			$(MAKE) -C $(LIBFT_DIR)
 			$(CC) $(CFLAGS) -o $(NAME) $(INC) $(SRC) $(LIB)
-
-# $(OBJS_DIR) :
-# 	@mkdir -p $(OBJS_DIR)
-
-# $(OBJS_DIR)/%.o : %.c | $(OBJS_DIR)
-# 	@$(CC) $(CFLAGS) -o $@ $(INC) -I $(LIBFT_DIR) -c $^
 
 clean:
 			$(MAKE) -C $(LIBFT_DIR) clean
@@ -71,8 +56,5 @@ fclean:
 	   		$(RM) $(NAME)
 
 re:			fclean all
-
-norm:
-			norminette -d ./gnl ./inc ./libft ./src
 
 .PHONY : all clean fclean re bonus

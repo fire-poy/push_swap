@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 14:27:49 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/24 17:36:16 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/25 19:20:45 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_revrot(t_stack *stk, char flag)
 	stk->top = stk->bot;
 	stk->bot = stk->bot->prev;
 	stk->top->prev = NULL;
-	stk->bot->next = NULL;	
+	stk->bot->next = NULL;
 	if (flag == 'a')
 		ft_putendl_fd("rra", 1);
 	if (flag == 'b')
@@ -45,8 +45,8 @@ void	ft_rot(t_stack *stk, char flag)
 	stk->bot->next = stk->top;
 	stk->bot = stk->top;
 	stk->top = stk->top->next;
-	stk->bot->next = NULL;	
-	stk->top->prev = NULL;	
+	stk->bot->next = NULL;
+	stk->top->prev = NULL;
 	if (flag == 'a')
 		ft_putendl_fd("ra", 1);
 	else if (flag == 'b')
