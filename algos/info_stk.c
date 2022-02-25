@@ -6,7 +6,7 @@
 /*   By: mpons <mpons@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/25 19:37:07 by mpons             #+#    #+#             */
-/*   Updated: 2022/02/25 19:49:30 by mpons            ###   ########.fr       */
+/*   Updated: 2022/02/25 20:06:05 by mpons            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	take_info_stk(t_stack *stk)
 
 void	find_piv(t_stack *stk)
 {
-	if (stk->st_size > 50 && stk->size <= 120)
+	if (stk->st_size > 0 && stk->size <= 120)
 	{
 		stk->min = find_min_val(stk);
 		stk->piv = stk->min + (stk->size / 3);
